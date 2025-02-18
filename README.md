@@ -18,5 +18,7 @@ The **Gamestore** is a web application developed to facilitate the buying and se
 ## Database Design
 The application utilizes **MySQL** to store information related to users, games, and transactions. The database structure is designed to manage relationships between entities such as users, orders, and game listings.
 
+![Gamestore UI](https://github.com/iamnotbibia/Game-Store-Website/blob/main/assets/home_game.png?raw=true)
+
 ---
 Enjoy trading games with **Gamestore**! 🎮🚀
