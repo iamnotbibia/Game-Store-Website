@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{base::layout(~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<style>
+
+	.container {
+		background-color: #121212;
+    	color: #1ED760;
+    	margin-top: 20px;
+		border: none;
+	}
+
+	.col-md-3 {
+		padding: 0;
+	}
+
+	.text-center {
+		color: #1ED760;
+	}
+	
+</style>
+</head>
+<body>
+	<section>
+		<!-- Start Slider  -->
+
+		<div class="carousel slide">
+			<div id="carouselExampleAutoplaying" class="carousel slide" style="margin-top:3%;" data-bs-ride="carousel">
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<img src="img/head.jpg" class="d-block w-100 " alt="..." height="750px">
+					</div>
+					<div class="carousel-item">
+						<img src="img/head2.jpg" class="d-block w-100" alt="..." height="750px">
+					</div>
+					<div class="carousel-item">
+						<img src="img/head3.jpg" class="d-block w-100" alt="..." height="750px">
+					</div>
+				</div>
+				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
+			</div>
+		</div>
+
+		<!-- End Slider  -->
+
+		<!--< Start Category Module -->
+		<div class="container" style=" color: #DFFF00;">
+			<div class="row">
+				<p class="title text-center fs-2 mt-3">Genres</p>
+				<div class="col-md-2"  th:each="c:${category}">
+					<div
+						class="card" style="background-color: #202020;">
+						<div class="card-body text-center">
+							<a th:href="@{'/products?category='+${c.name}}" class="text-decoration-none" style="color: white;">[[${c.name}]]</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Category Module -->
+
+
+		<!-- Start Latest Product Module -->
+
+		<div class="container p-3" style=" color: #DFFF00;">
+			<div class="row">
+				<p class="title text-center fs-2 ">All Games</p>
+				<div class="col-md-3" th:each="p:${products}">
+					<div class="card" style="height: auto; border: none; margin-bottom: 15px;">
+						<div class="card-body text-center" style="padding: 0; background-color: #202020;
+						 color: #1ED760;">
+							<img alt="" th:src="@{'img/product_img/'+${p.image}}" class="" width="100%"
+								height="auto" style="margin-bottom: 16px; max-height: 200px; min-height: 200px; object-fit: cover;">
+							<p class="text-center" style="margin: 0px;"><a th:href="@{'/product/'+${p.id}}" class="text-decoration-none" style="color: white;" >[[${p.title}]]</a></p>
+							<p class="fs-6 fw-bold">
+								<span>&#3647; [[${p.discountPrice}]]</span> <br> <span
+									class="text-decoration-line-through text-secondary">&#3647;
+									[[${p.price}]]</span> <span class="fs-6 text-success">[[${p.discount}]]%
+									off </span>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- End Latest Product Module -->
+	</section>
+</body>
+</html>

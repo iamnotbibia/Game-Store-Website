@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{base::layout(~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Dev</title>
+</head>
+<body>
+	<section>
+		<div class="p-5 mt-5">
+			<div class="row" >
+				<div class="col-lg" style="max-width:30%; margin:10% auto;">
+					<div class="card card-sh">
+						<div class="card-header text-center ">
+							<p class="fs-4">Edit Dev</p>
+							<th:block th:if="${session.succMsg}">
+								<p class="text-success fw-bold">[[${session.succMsg}]]</p>
+								<th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
+							</th:block>
+
+							<th:block th:if="${session.errorMsg}">
+								<p class="text-danger fw-bold">[[${session.errorMsg}]]</p>
+								<th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
+							</th:block>
+
+						</div>
+						<div class="card-body">
+							<form action="/admin/updateDev" method="post"
+								enctype="multipart/form-data">
+								<input type="hidden" name="id" th:value="${dev.id}">
+								<div class="mb-3">
+									<label>Enter Dev</label> <input type="text" name="name"
+										th:value="${dev.name}" class="form-control">
+								</div>
+								<button class="btn btn-primary col-md-12" style="background-color: #202020;">Update</button>
+							</form>
+						</div>
+					</div>
+				</div>
+
+
+
+			</div>
+		</div>
+	</section>
+</body>
+</html>

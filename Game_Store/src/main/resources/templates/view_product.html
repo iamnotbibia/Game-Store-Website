@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{base::layout(~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+		<div class="container card-sh"
+			style="margin-top: 10%; margin-bottom: 100px">
+
+			<div class="col-md-12 p-5" style="background-color: #2a2a2a; border-radius: 10px;">
+				<div class="row">
+					<th:block th:if="${session.succMsg}">
+						<p class="text-success alert alert-success text-center" role="alert">[[${session.succMsg}]]</p>
+						<th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
+					</th:block>
+
+					<th:block th:if="${session.errorMsg}">
+						<p class="text-danger text-center  alert alert-danger">[[${session.errorMsg}]]</p>
+						<th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
+
+					</th:block>
+					<div class="col-md-6 text-end "  >
+						<img alt="" th:src="@{'/img/product_img/'+${product.image}}" 
+								 style="max-height: 400px; min-height: 400px; max-width: 600px; min-width: 600px; object-fit: cover;">
+					</div>
+
+					<div class="col-md-6" style="color: white;">
+
+						<p class="fs-1 fw-bold">[[${product.title}]]</p>
+						<p>
+							<span class="fw-bold">Description : </span><br>[[${product.description}]]
+						</p>
+						<p>
+							<th:block th:if="${product.isActive==true}">
+								<span class="badge bg-success">Available</span>
+							</th:block>
+
+						</p>
+						<p class="fs-5 fw-bold">
+							Price : &#3647;
+							[[${product.discountPrice}]] <span
+								class="fs-6 text-decoration-line-through text-secondary">[[${product.price}]]</span>
+							<span class="fs-6  text-success">[[${product.discount}]]%
+								off</span>
+						</p>
+
+					
+
+						
+							<th:block th:if="${user==null}">
+								<a href="/signin" class="btn btn-danger col-md-12" style="background-color: #DFFF00; color: black;">Add To
+									Cart</a>
+							</th:block>
+
+							<th:block th:unless="${user==null}">
+								<a
+									th:href="@{'/user/addCart?pid='+${product.id}+'&uid='+${user.id}}"
+									class="btn " style="background-color: #DFFF00;">Add To Cart</a>
+							</th:block>
+
+						</th:block>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</section>
+</body>
+</html>
